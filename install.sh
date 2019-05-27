@@ -58,15 +58,15 @@ else
 fi
 
 # Clone the repository to your local drive.
-if [ -d "./laptop" ]; then
-  fancy_echo "Laptop repo dir exists. Removing ..."
-  rm -rf ./laptop/
+if [ -d "./setup-mac" ]; then
+  fancy_echo "setup-mac repo dir exists. Removing ..."
+  rm -rf ./setup-mac/
 fi
-fancy_echo "Cloning laptop repo ..."
-git clone https://github.com/siyelo/laptop.git 
+fancy_echo "Cloning setup-mac repo ..."
+git clone git@github.com:nille/setup-mac.git
 
-fancy_echo "Changing to laptop repo dir ..."
-cd laptop
+fancy_echo "Changing to setup-mac repo dir ..."
+cd setup-mac
 
 # Run this from the same directory as this README file. 
 fancy_echo "Running ansible playbook ..."
