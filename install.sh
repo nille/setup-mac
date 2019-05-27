@@ -63,7 +63,7 @@ if [ -d "./setup-mac" ]; then
   rm -rf ./setup-mac/
 fi
 fancy_echo "Cloning setup-mac repo ..."
-git clone git@github.com:nille/setup-mac.git
+git clone https://github.com/nille/setup-mac.git
 
 fancy_echo "Changing to setup-mac repo dir ..."
 cd setup-mac
