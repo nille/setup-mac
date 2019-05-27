@@ -28,11 +28,14 @@
     install_oh_my_zsh:  true
 
     brew_taps:
-      - caskroom/cask
-      - caskroom/versions # for sublime-text3
+      - caskroom/fonts
+      - caskroom/versions
       - homebrew/binary
-      - homebrew/dupes # gnu grep
+      - homebrew/cask
+      - homebrew/core
+      - homebrew/dupes
       - homebrew/versions 
+      - weaveworks/tap
 
     # brew  
     brew_utils:
