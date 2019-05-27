@@ -3,80 +3,27 @@
 
   vars:
 
+    # brew cask
     applications:
-      - 1password
-      #- adium 
-      - alfred # | http://www.alfredapp.com 
-      #- anvil # run sites locally 
-      - apptrap # remove associated prefs when uninstalling
-      - appzapper # uninstaller
-      #- atom # sublime without annoying popup | https://atom.io/download/mac 
-      - bettertouchtool # window snapping. (maybe Moom is more lightweight?)
-      #- betterzipql # quick look for zips 
-      #- bodega # a less-shit mac store 
-      #- caffeine # prevent mac from sleeping 
-      #- calibre # berks
-      - carbon-copy-cloner # backups | https://bombich.com/download
-      - cheatsheet # know your shortcuts
-      #- cord # RDP remote control 
-      - cyberduck # ftp, s3, openstack
-      - dash # totally sick API browser
-      #- deeper # (w/ onyx) turn on hidden functions 
-      - diffmerge # free visual diq
-      - disk-inventory-x # reclaim space on your expensive-ass Apple SSD | http://www.derlien.com/
-      - dropbox # a worse Mega Sync
-      - eve # learn your shortcuts
-      #- evernote 
-      #- fing # network diagnostics
-      - firefox 
-      - flux # get more sleep
-      - google-chrome
-      #- google-drive 
-      #- handbrake # vid compression 
-      - imageoptim # optimize images
-      - istumbler # network discovery GUI
-      #- iterm2 
-      - jumpcut # awesome clipboard
-      - karabiner # Keyboard customization
-      #- keka # file archiving 
-      - licecap # GIFs !
-      - little-snitch # awesome outbound firewall
-      #- mactracker # benchmarking 
-      #- macvim # a shittier vim 
-      - megasync # a better Dropbox  
-      - monolingual # remove unneeded osx lang files
-      #- namechanger # rename files in bulk 
-      #- nosleep # prevent mac from sleeping when closing lid 
-      - nvalt # fast note taking
-      #- onyx # system maintenance 
-      #- packer # machine images 
-      - qlcolorcode # quick look syntax highlighting
-      - qlimagesize # quick look image dimensions
-      - qlmarkdown # quick look .md files
-      - qlstephen # quick look extension-less text files
-      #- rcdefaultapp # set default app for different URLs 
-      - rowanj-gitx # Awesome gitx fork.
-      #- seil # Keyboard customization 
-      - sequel-pro # FREE SQL GUI!
-      - shortcat # kill your mouse
-      - shuttle # ssh management
-      #- skitch 
-      - skype # 
-      - sublime-text3 # (experimental cask) | http://www.sublimetext.com/
-      #- subtitles # auto download subtitles 
-      - thunderbird # email
-      - tomighty # pomodoro
-      - torbrowser # be the noise
-      #- tower # another git client
-      - transmission # torrents
-      #- transmit # ftp 
-      - tunnelblick # VPN
+      - authy # nice authenticator app
+      - brave-browser-dev # chrome without adds and tracking
+      - clipy # nice clipboard utility
+      - cyberduck # file transfer app
+      - docker
+      - font-hack-nerd-font
+      - google-cloud-sdk
+      - gpg-suite
+      - iterm2
+      - karabiner-elements
+      - keybase
+      - minikube
+      - slack-beta
+      - spotify
       - vagrant # | https://www.vagrantup.com/downloads.html
       - vagrant-manager # 
       - virtualbox # | https://www.virtualbox.org/
+      - visual-studio-code
       - vlc 
-      #- xtrafinder # moar Finder! 
-      #- zoomus # better videoconferences
 
     install_oh_my_zsh:  true
 
@@ -87,10 +34,31 @@
       - homebrew/dupes # gnu grep
       - homebrew/versions 
 
-    dotfile_repo_username: glennr # the GH repo where your dotfiles are
-
+    # brew  
     brew_utils:
-      # - ansible #already installed by ./mac bootstrap script
+      - ansible # most likely already installed att this point but better safe than sorry
+      - autoconf # gnu autoconf
+      - automake
+      - awscli # aws command line u†ilities
+      - base64 # all your base64 are belong to us
+      - bat # a better cat
+      - ctop # top command for docker containers
+      - fzf # a command-line fuzzy finder
+      - gnupg #  a complete and free implementation of the OpenPGP standard
+      - gnutls #  a secure communications library implementing the SSL, TLS and DTLS protocols
+      - htop # a prettier top
+      - git
+      - go # golang https://ahmadawais.com/install-go-lang-on-macos-with-homebrew/
+      - hugo # framework for building static sites
+      - imagemagick
+      - node
+      - ntfs-3g # ntfs support for os x
+      - pinentry # needed for yubikey signing
+      - google-chrome # always handy to have
+      - handbrake # vid compression 
+      - iterm2 
+      - jumpcut # awesome clipboard
+      - karabiner # Keyboard customization
       - autoconf
       - autojump # quickly navigate from cmd line
       - bash # Bash 4
@@ -98,37 +66,18 @@
       - brew-cask
       - cowsay # amazing
       - coreutils # Install GNU core utilities (those that come with OS X are outdated)
-      #- ctags
       - docker # | https://docs.docker.com/installation/mac/
-      #- ffmpeg
       - findutils  # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
       - git
       - go
       - gpg
-      #- homebrew/dupes/grep # more recent version of OS X grep # ansible bug: https://github.com/ansible/ansible-modules-extras/issues/252
       - hub # github
-      #- imagemagick # IDK why, but I always end up needing this beast
-      - keybase # in alpha at time of writing.
-      #- mercurial # Used to need it for golang src builds. Who knows, might come in handy again.
-      #- mongodb # a shittier PG 
       - mtr # better traceroute
-      #- mysql # required PHP library 
       - node
       - npm
       - openssl
       - packer
-      # - phantomjs 
-      - postgresql # yes and nosql
       - python
-      - rbenv # ruby. Just installs binaries - assumes you bring in the dotfiles.
-      - readline
-      - redis
-      - rename # rename multiple files
-      - rsync
-      - ruby-build
-      - sqlite # production rails DB
-      - the_silver_searcher # fast ack-grep
-      - tmux
       - vim
       - wget
       - zsh
@@ -182,13 +131,6 @@
       with_items: applications
       when: "{{ item not in installed_applications.results|map(attribute='stdout') }}"
 
-    # Caveats: megasync only works if called from /Applications
-    - name: Linking MEGASync with brew-cask
-      shell: ln -s '/opt/homebrew-cask/Caskroom/megasync/latest/MEGAsync.app' '/Applications/MEGAsync.app'
-      when: "'megasync' in applications"
-      ignore_errors: true # hacky
-
-
     ### ZSH radness 
 
     - name: Determine if zsh is default/current shell
@@ -222,62 +164,8 @@
       script: scripts/system_settings.sh
       sudo: true
 
-
-
-    ### DOTFILES
-
-    - name: Check rcm is installed
-      stat: path=/usr/local/bin/rcup
-      register: rcm_installed
-
-    - name: Install rcm for dotfiles management
-      shell: brew tap thoughtbot/formulae && brew install rcm
-      when: rcm_installed.stat.exists == false
-
-    - name: Check ~/src dir exists
-      stat: path=~/src/
-      register: src_dir_exists
-
-    - name: Assures ~/src dir exists
-      file: path=~/src state=directory
-
-    - name: Assures ~/src/thoughtbot dir exists
-      file: path=~/src/thoughtbot state=directory
-
-    - name: Install thoughtbot/dotfiles
-      git: repo=https://github.com/thoughtbot/dotfiles.git dest=~/src/thoughtbot/dotfiles
-
-    - name: Link ~/dotfiles to ~/src/thoughtbot/dotfiles
-      file: dest=~/dotfiles 
-            src=~/src/thoughtbot/dotfiles
-            state=link
-            force=yes
-      
-    - name: Assures ~/src/{{ dotfile_repo_username }} dir exists
-      file: path=~/src/{{ dotfile_repo_username }} state=directory
-
-    - name: Install {{ dotfile_repo_username }}/dotfiles
-      git: repo=https://github.com/{{ dotfile_repo_username }}/dotfiles.git dest=~/src/{{ dotfile_repo_username }}/dotfiles
-
-    - name: Link ~/dotfiles-local to ~/src/{{ dotfile_repo_username }}/dotfiles
-      file: dest=~/dotfiles-local
-            src=~/src/{{ dotfile_repo_username }}/dotfiles
-            state=link
-            force=yes
-
-    - name: Generate dotfiles with rcup
-      shell: env RCRC=~/dotfiles/rcrc rcup
-
-
     ## POST INSTALL STEPS / Cask gotchas
     #
     # require manual intervention!
     #
     
-    - name: Run Little Snitch Installer
-      shell: open /opt/homebrew-cask/Caskroom/little-snitch/3.5.3/Little\ Snitch\ Installer.app
-      when: "'little-snitch' in applications"
-
-    - name: Run Monolingual
-      shell: open ~/Applications/Monolingual.app
-      when: "'monolingual' in applications"
